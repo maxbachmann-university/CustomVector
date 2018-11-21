@@ -51,7 +51,7 @@ void Benchmark::Stop()
  *
  * @return   double max      maximal value for calculating.
  */
-double Benchmark::Max()
+double Benchmark::Max() const
 {
 	double max = m_data[0];
 	for (double const& value : m_data){
@@ -67,7 +67,7 @@ double Benchmark::Max()
  *
  * @return   double min      minimal value for calculating.
  */
-double Benchmark::Min()
+double Benchmark::Min() const
 {
 	double min = m_data[0];
 	for (double const& value : m_data){
@@ -83,7 +83,7 @@ double Benchmark::Min()
  *
  * @return   double mean      mean value for calculating.
  */
-double Benchmark::Mean()
+double Benchmark::Mean() const
 {
 	double mean = m_data[0];
 	for (double const& value : m_data){
@@ -98,7 +98,7 @@ double Benchmark::Mean()
  *
  * @return   double deviation      standard deviation for calculating.
  */
-double Benchmark::Deviation()
+double Benchmark::Deviation() const
 {
     double mean = Mean();
     double deviation = 0;
@@ -117,7 +117,7 @@ double Benchmark::Deviation()
  *
  * @param   std::string  Identifier for the data.
  */
-void Benchmark::calculate(std::string dataname)
+void Benchmark::calculate(const std::string& dataname)
 {
 	saveData(dataname);
 
@@ -148,7 +148,7 @@ void Benchmark::calculate(std::string dataname)
  *
  * @param   std::string  Identifier for the data.
  */
-void Benchmark::saveData(std::string dataname){
+void Benchmark::saveData(const std::string& dataname) const{
 	auto output = std::ofstream("data/" + dataname + ".dat");
 	if (!output.is_open()){
 		std::cerr << "can't open data/" << dataname << ".dat" << std::endl;
@@ -168,7 +168,7 @@ void Benchmark::saveData(std::string dataname){
  * @param   std::string  filename.
  * @param   std::vector<std::string>  filenames of .dat files.
  */
-void Benchmark::epsPlot(std::vector<std::string> filenames, std::string filename){
+void Benchmark::epsPlot(const std::vector<std::string>& filenames, const std::string& filename) const{
 	bool GnuPlot = true;
 	gnuplot p(GnuPlot);
 	if (GnuPlot){

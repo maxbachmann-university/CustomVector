@@ -28,20 +28,20 @@ std::vector<double> m_data;  //!< Vector for saving the runtimes.
 std::ofstream m_output;   //!< Output stream for the output file.
 std::chrono::steady_clock::time_point m_start;   //!< Variable for the start time.
 
-double Max();
-double Min();
-double Mean();
-double Deviation();
-void saveData(std::string dataname);
+double Max() const;
+double Min() const;
+double Mean() const;
+double Deviation() const;
+void saveData(const std::string& dataname) const;
 
 public:
 
 void Start();
 void Stop();
-void calculate(std::string dataname);
+void calculate(const std::string& dataname);
 Benchmark(std::string filename);
 ~Benchmark();
-void epsPlot(std::vector<std::string> filenames, std::string filename);
+void epsPlot(const std::vector<std::string>& filenames, const std::string& filename) const;
 
 };
 #endif //BENCHMARK_H
