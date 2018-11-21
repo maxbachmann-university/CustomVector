@@ -12,7 +12,7 @@
  * </p>
  *
  */
-Benchmark::Benchmark(std::string filename)
+Benchmark::Benchmark(const std::string& filename)
 {
     m_output = std::ofstream(filename + ".csv");
     m_output << "\"identifier\";\"max time\";\"min time\";\"mean time\";\"standard deviation\"\n";

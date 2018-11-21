@@ -30,8 +30,8 @@ public:
 
 	using value_type = T;  //!< Variable for the type of the vector items.
 	Vector();
-	Vector(size_t size);
-	Vector(std::initializer_list<value_type> lst);
+	explicit Vector(size_t size);
+	explicit Vector(std::initializer_list<value_type> lst);
 	Vector(const Vector& a);
 	~Vector();
 	void push_back(const value_type& value);

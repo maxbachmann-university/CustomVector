@@ -39,7 +39,7 @@ public:
 void Start();
 void Stop();
 void calculate(const std::string& dataname);
-Benchmark(std::string filename);
+explicit Benchmark(const std::string& filename);
 ~Benchmark();
 void epsPlot(const std::vector<std::string>& filenames, const std::string& filename) const;
 
