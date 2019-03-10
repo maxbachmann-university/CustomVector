@@ -4,7 +4,7 @@ Solution by Maximilian Bachmann, Felix Bandle, Florian Vetter
 
 Last submission date: November 19, 2018
 
-##Required functions:
+## Required functions:
 
 | function                                            | description                                                                                                                 |
 |-----------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
