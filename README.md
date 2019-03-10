@@ -4,7 +4,7 @@ Solution by Maximilian Bachmann, Felix Bandle, Florian Vetter
 
 Last submission date: November 19, 2018
 
-Goal of the project was to create a vector class with the functions described in [required functions](Required functions) and test it using Catch2
+Goal of the project was to create a vector class with the functions described in Required functions and test it using Catch2
 
 ## Required functions:
 
