@@ -11,7 +11,10 @@
  * @param   m_elements  pointer on first item of a vector.
  */
 template<typename T>
-Vector<T>::Vector() : m_elements(new value_type[8]), m_size(0) {};
+Vector<T>::Vector() 
+	: m_elements(new value_type[8])
+	, m_size(0) 
+{};
 
 /**
  * Constructor for a vector with a specific size.
@@ -23,7 +26,11 @@ Vector<T>::Vector() : m_elements(new value_type[8]), m_size(0) {};
  * @param  size   Commits the size of the vector.
  */
 template<typename T>
-Vector<T>::Vector(size_t size):m_elements(new value_type[2*size]), m_size(size), m_capacity(2*size){
+Vector<T>::Vector(size_t size)
+	: m_elements(new value_type[2*size])
+	, m_size(size)
+	, m_capacity(2*size)
+{
 	for (size_t i = 0; i < size; ++i){
 		m_elements[i] = 0;
 	}
@@ -39,7 +46,8 @@ Vector<T>::Vector(size_t size):m_elements(new value_type[2*size]), m_size(size),
  * @param  lst Fetches the data to be initialized when creating the vector.
  */
 template<typename T>
-Vector<T>::Vector(std::initializer_list<value_type> lst){
+Vector<T>::Vector(std::initializer_list<value_type> lst)
+{
 	reserve(lst.size());
 	m_size = lst.size();
 	size_t i = 0;
@@ -57,7 +65,11 @@ Vector<T>::Vector(std::initializer_list<value_type> lst){
  * @param  Vector to copy
  */
 template<typename T>
-Vector<T>::Vector(const Vector& a): m_elements(new value_type[a.m_capacity]), m_size(a.m_size), m_capacity(a.m_capacity){
+Vector<T>::Vector(const Vector& a)
+	: m_elements(new value_type[a.m_capacity])
+	, m_size(a.m_size)
+	, m_capacity(a.m_capacity)
+{
 	for (size_t i=0; i < a.m_size; ++i){
 		m_elements[i] = a.m_elements[i];
 	}
@@ -71,7 +83,8 @@ Vector<T>::Vector(const Vector& a): m_elements(new value_type[a.m_capacity]), m_
  *
  */
 template<typename T>
-Vector<T>::~Vector() {
+Vector<T>::~Vector()
+{
 	delete[] m_elements;
 }
 
@@ -85,7 +98,8 @@ Vector<T>::~Vector() {
  * @param  value  Item, that should be added.
  */
 template<typename T>
-void Vector<T>::push_back(const value_type& value) {
+void Vector<T>::push_back(const value_type& value)
+{
 	if (m_size >= m_capacity) {
 		reserve(m_capacity * 2);
 	}
@@ -102,7 +116,8 @@ void Vector<T>::push_back(const value_type& value) {
  * @param  value  Item, that should be added.
  */
 template<typename T>
-void Vector<T>::push_back(value_type& value) {
+void Vector<T>::push_back(value_type& value)
+{
 	if (m_size >= m_capacity) {
 		reserve(m_capacity * 2);
 	}
@@ -118,7 +133,8 @@ void Vector<T>::push_back(value_type& value) {
  * @param  value  Item, that should be added.
  */
 template<typename T>
-void Vector<T>::push_back_slow(value_type& value) {
+void Vector<T>::push_back_slow(value_type& value)
+{
 	m_capacity = m_size;
 	reserve(m_size + 1);
 	m_elements[m_size++] = value;
@@ -133,7 +149,8 @@ void Vector<T>::push_back_slow(value_type& value) {
  * @param  value  Item, that should be added.
  */
 template<typename T>
-void Vector<T>::push_back_slow(const value_type& value) {
+void Vector<T>::push_back_slow(const value_type& value)
+{
 	m_capacity = m_size;
 	reserve(m_size + 1);
 	m_elements[m_size++] = value;
@@ -144,7 +161,8 @@ void Vector<T>::push_back_slow(const value_type& value) {
  *
  */
 template<typename T>
-void Vector<T>::pop_back() {
+void Vector<T>::pop_back()
+{
 	if (m_size) {
 		--m_size;
 		if (m_size != 0 && m_size * 4 <= m_capacity) {
@@ -159,7 +177,8 @@ void Vector<T>::pop_back() {
  *
  */
 template<typename T>
-void Vector<T>::pop_back_slow() {
+void Vector<T>::pop_back_slow()
+{
 	if (m_size > 1){
         --m_size;
 		m_capacity = m_size-1;
@@ -186,7 +205,8 @@ void Vector<T>::pop_back_slow() {
  * @param  new_size  Permits the new size
  */
 template<typename T>
-void Vector<T>::resize(size_t new_size) {
+void Vector<T>::resize(size_t new_size)
+{
 	if (new_size < m_size){
 		m_size = new_size;
 	}else if (new_size > m_size){
@@ -204,7 +224,8 @@ void Vector<T>::resize(size_t new_size) {
  *
  */
 template<typename T>
-void Vector<T>::shrink_to_fit() {
+void Vector<T>::shrink_to_fit()
+{
 	m_capacity = m_size;
 	reserve(m_capacity);
 }
@@ -215,7 +236,8 @@ void Vector<T>::shrink_to_fit() {
  * @param  n  Size of storage to be reserved.
  */
 template<typename T>
-void Vector<T>::reserve(size_t new_capacity ) {
+void Vector<T>::reserve(size_t new_capacity )
+{
 	if (new_capacity < m_capacity) return;
 
 	value_type* helper = new value_type[new_capacity];
@@ -236,7 +258,8 @@ void Vector<T>::reserve(size_t new_capacity ) {
  * @return Pointer on the first item.
  */
 template<typename T>
-T* Vector<T>::begin() const {
+T* Vector<T>::begin() const
+{
 	return m_elements;
 }
 
@@ -246,7 +269,8 @@ T* Vector<T>::begin() const {
  * @return Pointer on the item behind the last item of the vector.
  */
 template<typename T>
-T* Vector<T>::end() const {
+T* Vector<T>::end() const
+{
 	return m_elements + m_size;
 }
 
@@ -256,7 +280,8 @@ T* Vector<T>::end() const {
  * @return Size of vector.
  */
 template<typename T>
-size_t Vector<T>::size() const {
+size_t Vector<T>::size() const
+{
 	return m_size;
 }
 
@@ -266,7 +291,8 @@ size_t Vector<T>::size() const {
  * @return Size of vector.
  */
 template<typename T>
-size_t Vector<T>::capacity() const {
+size_t Vector<T>::capacity() const
+{
 	return m_capacity;
 }
 
@@ -276,7 +302,8 @@ size_t Vector<T>::capacity() const {
  * @return Bool on wether the vector is empty or not.
  */
 template<typename T>
-bool Vector<T>::empty() const {
+bool Vector<T>::empty() const
+{
 	return m_size == 0;
 }
 
@@ -286,7 +313,8 @@ bool Vector<T>::empty() const {
  * @return Returns a Pointer on the searched item.
  */
 template<typename T>
-T& Vector<T>::operator [] (size_t index) {
+T& Vector<T>::operator [] (size_t index)
+{
 	return m_elements[index];
 }
 
@@ -296,8 +324,34 @@ T& Vector<T>::operator [] (size_t index) {
  * @return Returns a const Pointer on the searched item.
  */
 template<typename T>
-const T& Vector<T>::operator [] (size_t index) const {
+const T& Vector<T>::operator [] (size_t index) const
+{
 	return m_elements[index];
+}
+
+/**
+ * custom assignment operator to move a Vector
+ *
+ * @return Returns a Pointer on the move Vector
+ */
+template<typename T>
+Vector<T>& Vector<T>::operator= (Vector&& x) noexcept
+{
+	//nocheck for self assignment, because that happens nearly never in real code
+	//-> check just makes your code slower
+	x.swap(*this);
+        return *this;
+}
+
+/**
+ * swap two vector
+ *
+ */
+void Vector<T>::swap(Vector& other) noexcept
+{
+       std::swap(other->m_elements, m_elements);
+       std::swap(other->m_capacity, m_capacity);
+       std::swap(other->m_size, m_size);
 }
 
 /**
@@ -306,9 +360,10 @@ const T& Vector<T>::operator [] (size_t index) const {
  * @return Returns a Pointer on the copied Vector
  */
 template<typename T>
-Vector<T>& Vector<T>::operator = (const Vector& x) {
-	//check for self assignment
-	if (this == &x) return *this;
+Vector<T>& Vector<T>::operator= (const Vector& x)
+{
+	//nocheck for self assignment, because that happens nearly never in real code
+	//-> check just makes your code slower
 	value_type* helper = new value_type[x.m_capacity];
 	for (size_t i=0; i < x.m_size; ++i){
 		helper[i] = x.m_elements[i];
@@ -331,7 +386,8 @@ Vector<T>& Vector<T>::operator = (const Vector& x) {
 *
 */
 template<typename T>
-void Vector<T>::clear() {
+void Vector<T>::clear()
+{
 	value_type* helper = new value_type[m_capacity];
 	if (m_elements != nullptr) {
 		delete[] m_elements;
@@ -351,7 +407,8 @@ void Vector<T>::clear() {
 * @exeption std::out_of_range ("position >= Vectorsize")
 */
 template<typename T>
-T& Vector<T>::at(size_t pos) {
+T& Vector<T>::at(size_t pos)
+{
 	if (!(pos < m_size)){
 		throw std::out_of_range ("position >= Vectorsize");
 	}
