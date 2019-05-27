@@ -41,7 +41,7 @@ public:
 	void pop_back();
 	void pop_back_slow();
 	void resize(size_t new_size);
-    void shrink_to_fit();
+        void shrink_to_fit();
 	void reserve(size_t new_capacity );
 	T* begin() const;
 	T* end() const;
@@ -51,6 +51,8 @@ public:
 	T& operator [] (size_t index);
 	const T& operator [] (size_t index) const;
 	Vector& operator = (const Vector& x);
+	operator= (Vector&& x) noexcept
+        swap(Vector& other) noexcept
 	void clear();
 	T& at(size_t pos);
 };
