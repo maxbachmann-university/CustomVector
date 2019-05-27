@@ -72,10 +72,7 @@ Vector<T>::Vector(const Vector& a): m_elements(new value_type[a.m_capacity]), m_
  */
 template<typename T>
 Vector<T>::~Vector() {
-	if (m_elements != nullptr){
-		delete[] m_elements;
-		m_elements = nullptr;
-	}
+	delete[] m_elements;
 }
 
 /**
