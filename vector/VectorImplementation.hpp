@@ -13,8 +13,7 @@
 template<typename T>
 Vector<T>::Vector() 
 	: m_elements(new value_type[8])
-	, m_size(0) 
-{};
+	, m_size(0) {}
 
 /**
  * Constructor for a vector with a specific size.
@@ -364,17 +363,9 @@ Vector<T>& Vector<T>::operator= (const Vector& x)
 {
 	//nocheck for self assignment, because that happens nearly never in real code
 	//-> check just makes your code slower
-	value_type* helper = new value_type[x.m_capacity];
-	for (size_t i=0; i < x.m_size; ++i){
-		helper[i] = x.m_elements[i];
-	}
-		
-	std::swap(this->m_elements, helper);
-	this->m_capacity = x.m_capacity;
-	this->m_size = x.m_size;
-
-	delete[] helper;
-	return *this;
+       Vector temp(x);
+       temp.swap(*this);
+       return *this;
 }
 
 /**
